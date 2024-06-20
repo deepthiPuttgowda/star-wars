@@ -1,0 +1,63 @@
+ <div style="display: flex;">
+  <div class="image" *ngIf="isLoaded && !showFilter">
+    <button mat-raised-button (click)="openFilter()">Filter</button>
+  </div>
+  <div style="width: 72%; margin: 5vh;">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="isLoaded">
+          <ng-container matColumnDef="SLNo.">
+            <th mat-header-cell *matHeaderCellDef> SL No. </th>
+            <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="CharacterName">
+            <th mat-header-cell *matHeaderCellDef> Character Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="Species">
+            <th mat-header-cell *matHeaderCellDef> Species </th>
+            <td mat-cell *matCellDef="let element"> {{element.species}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="Birth_Year">
+            <th mat-header-cell *matHeaderCellDef> Birth Year </th>
+            <td mat-cell *matCellDef="let element"> {{element.birth_year}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="CharacterDetails(row)"></tr>
+      </table>
+      <div class="loader" *ngIf="!isLoaded"></div>
+  </div>
+   <div class="filter-div" *ngIf="isLoaded && showFilter">
+    <div class="close" (click)="showFilter = false">Close</div>
+    <div style="position: absolute;left: 9vh;top: 7vh;">
+      <mat-form-field appearance="fill">
+        <mat-label>Species</mat-label>
+        <mat-select  [(ngModel)]="speciesInitial" (selectionChange)="onSpeciesChange($event)">
+          <mat-option value="">All</mat-option>
+        <mat-option value="Human">Human</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Birth Year</mat-label>
+        <mat-select  [(ngModel)]="yearInitial" (selectionChange)="onYearChange($event)">
+        <mat-option value="">All</mat-option>
+        <mat-option value="19BBY">19BBY</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Movie</mat-label>
+        <mat-select  [(ngModel)]="movieInitial" (selectionChange)="onMovieChange($event)">
+          <mat-option value="">All</mat-option>
+        <mat-option value="A New Hope">A New Hope</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="buttons">
+      <button mat-raised-button (click)="clearFilter()">Clear</button>
+    </div>
+   </div>
+ </div>
+  
+  

@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="details">
+        <div class="details-div">
+            <button mat-raised-button (click)="goBack()" class="btn">Back</button>
+            <div class="data">
+                <div *ngFor="let data of data[0] | keyvalue" style="display: flex; line-height: 7vh;">
+                    <div class="title">{{data.key}} :</div>
+                    <div class="sub">{{data.value}}</div>
+                    <br>
+                </div>
+            </div>           
+            <div class="cards">
+                <div class="movie-title">Movies</div>
+                 <mat-accordion class="accordian">
+                    <mat-expansion-panel *ngFor="let film of films">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        {{film.title}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="film-div">
+                        <div class="que-div">
+                            <div class="paneltitle">Director :</div> <div class="sub">{{film.director}}</div>
+                        </div>
+                        <div class="que-div"><div class="paneltitle">Released Date :</div> <div class="sub">{{film.release_date}}</div></div>
+                        <div class="que-div"><div class="paneltitle">Episode :</div> <div class="sub">{{film.episode_id}}</div></div>
+                        <br>
+                    </div>
+                    </mat-expansion-panel>
+                 </mat-accordion>
+            </div>
+            <div class="cards" *ngIf="spaceships.length != 0">
+                <div class="movie-title">SpaceShips<div>
+                 <mat-accordion class="accordian">
+                    <mat-expansion-panel *ngFor="let space of spaceships">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        {{space.name}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="film-div">
+                        <div class="que-div">
+                            <div class="paneltitle">Model :</div> <div class="sub">{{space.model}}</div>
+                        </div>
+                        <div class="que-div"><div class="paneltitle">Cost :</div> <div class="sub">{{space.cost_in_credits}}</div></div>
+                        <br>
+                    </div>
+                    </mat-expansion-panel>
+                 </mat-accordion>
+            </div>
+        </div>
+    </div>
+</div>
